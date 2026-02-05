@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica de Lua</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/fengari-web/dist/fengari-web.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <header class="page-header">
+        <h1>Laboratorio de Lua</h1>
+        <p>
+          Escribe código Lua, ejecútalo y revisa la salida en la consola. Diseñado para
+          usarse cómodamente en teléfono o computadora.
+        </p>
+      </header>
+
+      <section class="panel">
+        <label for="lua-editor" class="label">Editor Lua</label>
+        <textarea id="lua-editor" spellcheck="false" aria-label="Editor de código Lua">
+-- Bienvenido al laboratorio de Lua
+-- Prueba este ejemplo:
+for i = 1, 5 do
+  print("Hola alumno #" .. i)
+end
+
+local suma = 0
+for n = 1, 10 do
+  suma = suma + n
+end
+print("Suma del 1 al 10:", suma)
+        </textarea>
+
+        <div class="actions">
+          <button id="run-btn" type="button">Ejecutar</button>
+          <button id="clear-btn" type="button" class="secondary">Limpiar consola</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Consola de salida</h2>
+        <pre id="output" aria-live="polite">Presiona "Ejecutar" para ver resultados.</pre>
+      </section>
+    </main>
+  </body>
+</html>
