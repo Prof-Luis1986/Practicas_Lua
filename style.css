@@ -31,6 +31,33 @@ body {
   max-width: 72ch;
 }
 
+.nav-links {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e5e7eb;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+}
+
+.nav-button.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
 .panel {
   background: #ffffff;
   border: 1px solid #d1d5db;

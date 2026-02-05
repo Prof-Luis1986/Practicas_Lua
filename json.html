@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica de JSON</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="json.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <header class="page-header">
+        <h1>Laboratorio de JSON</h1>
+        <p>
+          Escribe un JSON válido, verifica errores y observa el formato final. Ideal para
+          practicar estructuras y validar sintaxis.
+        </p>
+        <div class="nav-links">
+          <a href="index.html" class="nav-button">Lua</a>
+          <a href="json.html" class="nav-button active">JSON</a>
+        </div>
+      </header>
+
+      <section class="panel">
+        <label for="json-editor" class="label">Editor JSON</label>
+        <textarea id="json-editor" spellcheck="false" aria-label="Editor de JSON">
+{
+  "curso": "Lua",
+  "nivel": "basico",
+  "alumnos": [
+    {
+      "nombre": "Ana",
+      "edad": 21,
+      "activo": true
+    },
+    {
+      "nombre": "Luis",
+      "edad": 24,
+      "activo": false
+    }
+  ],
+  "metadatos": {
+    "tema": "JSON",
+    "version": 1
+  }
+}
+        </textarea>
+
+        <div class="actions">
+          <button id="validate-btn" type="button">Validar</button>
+          <button id="format-btn" type="button" class="secondary">Formatear</button>
+          <button id="clear-btn" type="button" class="secondary">Limpiar salida</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Resultado</h2>
+        <pre id="output" aria-live="polite">Escribe JSON y presiona "Validar".</pre>
+      </section>
+    </main>
+  </body>
+</html>
