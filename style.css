@@ -1,6 +1,15 @@
 :root {
   color-scheme: only light;
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  --surface: rgba(255, 255, 255, 0.9);
+  --border: rgba(148, 163, 184, 0.45);
+  --text: #111827;
+  --muted: #475569;
+  --accent: #f97316;
+  --accent-strong: #ea580c;
+  --accent-soft: rgba(249, 115, 22, 0.15);
+  --ink: #0f172a;
+  --panel-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
 }
 
 * {
@@ -9,32 +18,38 @@
 
 body {
   margin: 0;
-  background: #f3f4f6;
-  color: #1f2937;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(254, 215, 170, 0.65), transparent 55%),
+    radial-gradient(circle at 20% 20%, rgba(125, 211, 252, 0.35), transparent 45%),
+    linear-gradient(160deg, #f8fafc 0%, #e2e8f0 65%, #f1f5f9 100%);
+  min-height: 100vh;
 }
 
 .container {
   width: min(960px, 100%);
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2.25rem 1.5rem 3rem;
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .page-header h1 {
   margin: 0;
-  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  color: var(--ink);
 }
 
 .page-header p {
   margin: 0.5rem 0 0;
   max-width: 72ch;
+  color: var(--muted);
 }
 
 .nav-links {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
@@ -43,26 +58,36 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.9rem;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
-  background: #e5e7eb;
-  color: #1f2937;
-  border: 1px solid #d1d5db;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .nav-button.active {
-  background: #2563eb;
+  background: var(--accent);
   color: #ffffff;
-  border-color: #2563eb;
+  border-color: transparent;
+  box-shadow: 0 10px 22px rgba(249, 115, 22, 0.35);
+}
+
+.nav-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
 }
 
 .panel {
-  background: #ffffff;
-  border: 1px solid #d1d5db;
-  border-radius: 0.75rem;
-  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.25rem 1.4rem;
+  box-shadow: var(--panel-shadow);
+  backdrop-filter: blur(12px);
 }
 
 .label,
@@ -70,43 +95,48 @@ h2 {
   margin: 0 0 0.5rem;
   font-size: 1rem;
   font-weight: 700;
+  color: var(--ink);
 }
 
 textarea {
   width: 100%;
   min-height: 300px;
-  border: 1px solid #9ca3af;
-  border-radius: 0.5rem;
-  background: #f9fafb;
-  color: #111827;
-  padding: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  border-radius: 0.75rem;
+  background: rgba(248, 250, 252, 0.85);
+  color: #0f172a;
+  padding: 0.9rem 1rem;
   resize: vertical;
-  font-family: "Fira Code", Consolas, monospace;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
   font-size: 0.95rem;
-  line-height: 1.4;
+  line-height: 1.5;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08);
 }
 
 .actions {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  gap: 0.75rem;
+  margin-top: 1rem;
   flex-wrap: wrap;
 }
 
 button {
   border: none;
-  border-radius: 0.5rem;
-  padding: 0.65rem 1rem;
+  border-radius: 0.75rem;
+  padding: 0.7rem 1.15rem;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  background: #2563eb;
+  background: var(--accent);
   color: #ffffff;
+  box-shadow: 0 10px 24px rgba(249, 115, 22, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button.secondary {
-  background: #e5e7eb;
-  color: #1f2937;
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--ink);
+  box-shadow: none;
 }
 
 button:active {
@@ -118,27 +148,28 @@ pre {
   min-height: 180px;
   max-height: 360px;
   overflow: auto;
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
-  background: #111827;
-  color: #f9fafb;
-  padding: 0.75rem;
-  font-family: "Fira Code", Consolas, monospace;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  border-radius: 0.75rem;
+  background: #0b1220;
+  color: #e2e8f0;
+  padding: 0.9rem 1rem;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
   font-size: 0.9rem;
-  line-height: 1.4;
+  line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.35);
 }
 
 @media (max-width: 640px) {
   .container {
-    padding: 0.75rem;
-    gap: 0.75rem;
+    padding: 1.5rem 1rem 2.5rem;
+    gap: 1rem;
   }
 
   .panel {
-    padding: 0.75rem;
-    border-radius: 0.65rem;
+    padding: 1rem;
+    border-radius: 0.9rem;
   }
 
   textarea {
