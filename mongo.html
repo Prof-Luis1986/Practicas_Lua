@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica de MongoDB</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="mongo.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <header class="page-header">
+        <h1>Laboratorio de MongoDB</h1>
+        <p>
+          Practica consultas tipo MongoDB sobre una colección simulada. Escribe el
+          filtro, la proyección y las opciones en formato JSON para explorar datos.
+        </p>
+        <div class="nav-links">
+          <a href="index.html" class="nav-button">Lua</a>
+          <a href="json.html" class="nav-button">JSON</a>
+          <a href="mongo.html" class="nav-button active">MongoDB</a>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>Colección</h2>
+        <p class="helper-text">
+          Pega o escribe tu colección como un arreglo JSON. Ejemplo: <code>[{"nombre":"Ana"}]</code>.
+        </p>
+        <label for="collection-editor" class="label">Colección (JSON)</label>
+        <textarea
+          id="collection-editor"
+          spellcheck="false"
+          aria-label="Colección JSON"
+        ></textarea>
+        <div class="actions">
+          <button id="load-collection" type="button">Cargar colección</button>
+          <button id="reset-collection" type="button" class="secondary">Restablecer ejemplo</button>
+        </div>
+        <pre id="collection-output" aria-live="polite"></pre>
+      </section>
+
+      <section class="panel">
+        <h2>Consola MongoDB</h2>
+        <p class="helper-text">
+          Simula comandos clásicos de MongoDB. Puedes ejecutar varios comandos separados por
+          salto de línea o <code>;</code>.
+        </p>
+        <label for="mongo-command" class="label">Comando</label>
+        <textarea id="mongo-command" spellcheck="false" aria-label="Consola MongoDB">
+show dbs
+use escuela
+db
+show collections
+db.usuarios.find({ edad: { $gt: 18 } }).pretty()
+        </textarea>
+        <div class="actions">
+          <button id="run-command" type="button">Ejecutar comando</button>
+          <button id="clear-command" type="button" class="secondary">Limpiar salida</button>
+          <button id="reset-command" type="button" class="secondary">Restablecer ejemplos</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Resultado de comandos</h2>
+        <pre id="command-output" aria-live="polite">Ejecuta un comando para ver resultados.</pre>
+      </section>
+
+      <section class="panel">
+        <h2>Explicación de comandos</h2>
+        <p class="helper-text">
+          Referencia rápida de lo que hace cada comando del simulador.
+        </p>
+        <div class="guide-grid">
+          <div class="guide-card">
+            <h3>show dbs</h3>
+            <p>Lista las bases de datos creadas en la sesión.</p>
+          </div>
+          <div class="guide-card">
+            <h3>use nombreBase</h3>
+            <p>Cambia la base activa. Se crea cuando insertas el primer documento.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db</h3>
+            <p>Muestra el nombre de la base de datos actual.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.dropDatabase()</h3>
+            <p>Elimina la base de datos activa y sus colecciones.</p>
+          </div>
+          <div class="guide-card">
+            <h3>show collections</h3>
+            <p>Lista las colecciones existentes en la base actual.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.createCollection("usuarios")</h3>
+            <p>Crea una colección vacía con el nombre indicado.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.drop()</h3>
+            <p>Elimina la colección completa.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.insertOne({...})</h3>
+            <p>Inserta un documento. Si no hay <code>_id</code>, se genera.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.insertMany([...])</h3>
+            <p>Inserta varios documentos en un arreglo.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.find(filtro, proyeccion)</h3>
+            <p>Consulta documentos; la proyección controla campos visibles.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.findOne(filtro)</h3>
+            <p>Devuelve el primer documento que coincida.</p>
+          </div>
+          <div class="guide-card">
+            <h3>find().pretty()</h3>
+            <p>Formatea el JSON para lectura más cómoda.</p>
+          </div>
+          <div class="guide-card">
+            <h3>find().sort({ campo: 1 })</h3>
+            <p>Ordena resultados ascendente (1) o descendente (-1).</p>
+          </div>
+          <div class="guide-card">
+            <h3>find().limit(n)</h3>
+            <p>Limita el número de documentos devueltos.</p>
+          </div>
+          <div class="guide-card">
+            <h3>find().skip(n)</h3>
+            <p>Omite los primeros <code>n</code> resultados.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.countDocuments(filtro)</h3>
+            <p>Cuenta cuántos documentos cumplen el filtro.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.updateOne(filtro, { $set: ... })</h3>
+            <p>Actualiza el primer documento que coincida.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.updateMany(filtro, { $set: ... })</h3>
+            <p>Actualiza todos los documentos que coincidan.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.deleteOne(filtro)</h3>
+            <p>Elimina el primer documento que coincida.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.deleteMany(filtro)</h3>
+            <p>Elimina todos los documentos que coincidan.</p>
+          </div>
+          <div class="guide-card">
+            <h3>db.usuarios.aggregate([...])</h3>
+            <p>Ejecuta una tubería con <code>$match</code> y <code>$group</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Resultado</h2>
+        <pre id="query-output" aria-live="polite">Escribe un filtro y presiona "Ejecutar consulta".</pre>
+      </section>
+    </main>
+  </body>
+</html>
